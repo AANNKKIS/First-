@@ -1,32 +1,165 @@
-# Prerequisites
-*.d
+//https://sun9-4.userapi.com/c840627/v840627720/6b9fa/wQy8_2fCPrk.jpg
+//https://pp.userapi.com/c845219/v845219720/5b20/xr2UmkN3QFQ.jpg
+#include <cstdlib>
+#include <iostream>
+#include <math.h>
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+int main()
+{
+int n; // число вводимое пользователем
+cout << "Vvedite pervoe chislo: "<< endl;;
+cin >> n;
+    if ((n == 1)||(n == 2)||(n == 3)||(n == 5)||(n == 7))
+        {
+         cout << "chislo "<< n << " prostoe"<< endl;
+        }
+    else
+            {
+                if ((n%2==0)||(n%3==0)||(n%5==0)||(n%7==0))
+                    {
+                     cout << "chislo "<< n << " ne prostoe"<< endl;
+                    }
+                else
+                    {
+                    cout << "chislo "<< n << " prostoe"<< endl;
+                    }
+            }
+// 1 этап ^
+int pch [10] = {2,3,5,7,11,13,17,19,23,29}; // простые числа
+int pm [4] = {0,0,0,0}; // простые множители
+int j=0; //  элемент в массиве
+int k=0; // счетчик 
 
-# Precompiled Headers
-*.gch
-*.pch
+    while (n!=1)
+    {
+        if (n%pch [j]==0)
+            {
+                n /= pch[j];
+                if (pch[j]!= pm[k-1] || k==0 )
+                {
+                    pm [k] = pch [j];
+                    k++;
+                }
+            }
+        else {j++;}
+    }
+    if (k > 4)
+    {
+        cout << "Bugaga" << endl;
+    } else
+        for (j=0; j<k; j++)
+            cout << "pm[" << j << "]= " << pm [j] <<endl;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+// 2 этап ^
 
-# Fortran module files
-*.mod
-*.smod
+float otn = 0;
+if ( j > 3)
+    {
+        float sum = 0.0; // переменная для суммы чисел в массиве
+        for (int i=0; i < j; i++)
+            {
+                sum += pm[i]; // накапливаем сумму            
+            }
+        float sa = sum / j; // среднее арифметическое
+        cout << "Srednee arifm. el-ov massiva= "<< sa << endl;
+}   else
+    {
+        float pr = 0.0; // переменная для произведения простых чисел в массиве
+        for (int i=0; i <= j; i++)
+            {
+                pr *= pm [i]; // вычисляем произведение простых чисел в массиве
+            }
+    otn = n / pr; // отношение вводимого числа к произведению простых чисел в массиве
+    cout << "Otnoshenie n / pr= " << otn << endl;
+            }
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+// 3 этап ^
 
-# Executables
-*.exe
-*.out
-*.app
+if ( float otn = 1.0 )
+    {
+        cout << " Abrakadabra" << endl;
+    }
+else {
+    int arr [6]; // объявление массива из 6 чисел после запятой
+    for (int s = 0; s<7; s++)
+        {
+            arr [s] = otn%(pow(10,(s+1))); // заполнение элементов массива результатами деления на остаток
+// надо присвоить otn int ?????
+        }
+    }
+
+// 4 этап ^
+
+int arr2 [6];   // массив из чисел кратных 3 
+for (int m=0; m<7; m++)
+    {
+        if ( arr [m] %3==0 ) // проверка массива на кратность 3
+            {
+                arr [m] = arr2 [m];  // надо заполнить массив arr2 в котором будут элементы кратные 3
+            }
+    }
+
+int max = arr2 [0]; // добовляем переменную в которую положим максимальное число
+    for (int i=0; i<7; ++i)
+        if (arr2[i] > max) // сравниваем циклом максимальное с каждым эл-том в массиве arr2 (кр.тн. 3)
+            {
+                max = arr2 [i];   
+            }
+
+// 5 этап ^
+
+float pi = 3.14159;
+if (max < 2*pi)   //сортировка arr2 по возростанию методом пузырька
+    {
+    int temp; // переменная для эл-в обмена в массиве
+    int const size = 6; // размер массива arr2 постоянный и имеет размер 6
+      for (int i = 0; i < size - 1; i++) {               
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr2[j] > arr2[j + 1]) {                   // меняем элементы местами
+                temp = arr2[j];
+                arr2[j] = arr2[j + 1];
+                arr2[j + 1] = temp;
+            }
+        }
+    }
+    }
+
+else {
+    int temp; // переменная для эл-в обмена в массиве
+    int const size = 6; // размер массива arr2 постоянный и имеет размер 6
+        for (int i = 0; i < size - 1; i++) {               
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr2[j] < arr2[j + 1]) {                   // меняем элементы местами
+                temp = arr2[j];
+                arr2[j] = arr2[j + 1];
+                arr2[j + 1] = temp;
+            }
+        }
+    } //сортировака arr2 по убыванию
+    }
+// 6 этап ^
+int perem = 1;
+for (int i=0; (i<7 && (arr2[i]%2==0));i++)
+	{	
+		perem = perem* arr[i];
+	}
+perem = n/perem;
+cout<< "Мы получили конечное число равное= "<<perem<<endl;
+// 7 этап ^
+return 0;
+}
+
+void depulso(int a, int b)
+{
+	int a =0;
+	int b=0;
+}
+// функция Депульсо
+void lumos(int a, int b)
+{
+	int a=0;
+	int b=0;
+}
+// функция Люмос
+
